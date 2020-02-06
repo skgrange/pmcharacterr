@@ -9,8 +9,8 @@ str_contribution_label(x, digits = 1)
 \arguments{
 \item{x}{A numeric vector to format.}
 
-\item{digits}{Number of decimal points to display in the 
-\code{contribution_label} variable.}
+\item{digits}{Number of decimal points to round numeric vector before 
+formatting.}
 }
 \value{
 Character vector.
@@ -18,8 +18,21 @@ Character vector.
 \description{
 Function to calculate particulate matter contribution labels.
 }
+\examples{
+
+contributions <- c(
+  0.035264483627204, 0.0831234256926952, 0.0680100755667506, 0.171284634760705, 
+  0.173803526448363
+)
+
+# Format
+str_contribution_label(contributions * 100)
+
+
+}
 \seealso{
-\code{\link{calculate_missing_mass}}
+\code{\link{calculate_missing_mass}}, 
+\code{\link{calculate_contributions}}
 }
 \author{
 Stuart K. Grange

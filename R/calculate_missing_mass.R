@@ -21,9 +21,9 @@
 #'  "mass",           39.7,  
 #'  "ec",             6.1,   
 #'  "om",             9.2,   
-#'  "nitrage",        3.3,   
+#'  "nitrate",        3.3,   
 #'  "ammonium",       1.4,   
-#'  "sulphate",       3.3,   
+#'  "sulfate",        3.3,   
 #'  "mineral_dust",   2.7,   
 #'  "trace_elements", 6.8
 #'  )
@@ -40,13 +40,11 @@ calculate_missing_mass <- function(df, digits = 6) {
   if ("method_type" %in% names(df)) {
     df <- select(df, method_type, variable, value)
   } else {
-    
     df <- df %>% 
       mutate(method_type = NA_character_) %>% 
       select(method_type,
              variable, 
              value)
-    
   }
   
   # Get mass value

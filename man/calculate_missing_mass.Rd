@@ -26,9 +26,9 @@ data_example <- tibble::tribble(
  "mass",           39.7,  
  "ec",             6.1,   
  "om",             9.2,   
- "nitrage",        3.3,   
+ "nitrate",        3.3,   
  "ammonium",       1.4,   
- "sulphate",       3.3,   
+ "sulfate",        3.3,   
  "mineral_dust",   2.7,   
  "trace_elements", 6.8
  )

@@ -4,13 +4,10 @@
 \alias{calculate_contributions}
 \title{Function to calculate particulate matter relative contributions.}
 \usage{
-calculate_contributions(df, digits = 1)
+calculate_contributions(df)
 }
 \arguments{
 \item{df}{Input data frame.}
-
-\item{digits}{Number of decimal points to display in the 
-\code{contribution_label} variable.}
 }
 \value{
 Tibble.
@@ -26,9 +23,9 @@ data_example <- tibble::tribble(
  "mass",           39.7,  
  "ec",             6.1,   
  "om",             9.2,   
- "nitrage",        3.3,   
+ "nitrate",        3.3,   
  "ammonium",       1.4,   
- "sulphate",       3.3,   
+ "sulfate",        3.3,   
  "mineral_dust",   2.7,   
  "trace_elements", 6.8,
  "missing",        6.9
@@ -39,7 +36,8 @@ calculate_contributions(data_example)
 
 }
 \seealso{
-\code{\link{calculate_missing_mass}}
+\code{\link{calculate_missing_mass}}, 
+\code{\link{str_contribution_label}}
 }
 \author{
 Stuart K. Grange
