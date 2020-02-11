@@ -4,7 +4,7 @@
 #' 
 #' @param as_palette Should the return be of class \code{palette}? 
 #' 
-#' @return Colour palette or tibble. 
+#' @return Named colour palette or tibble. 
 #' 
 #' @examples 
 #' 
@@ -31,9 +31,8 @@ colours_pmcharacterr <- function(as_palette = TRUE) {
   if (as_palette) {
     
     x <- df %>% 
-      pull(colour) %>% 
-      "class<-"("palette") %>% 
-      `attr<-`("name", "pmcharacterr")
+      tibble::deframe() %>% 
+      "class<-"("palette") 
     
     return(x)
     

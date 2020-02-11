@@ -10,7 +10,7 @@ colours_pmcharacterr(as_palette = TRUE)
 \item{as_palette}{Should the return be of class \code{palette}?}
 }
 \value{
-Colour palette or tibble.
+Named colour palette or tibble.
 }
 \description{
 Function to generate a custom colour palette for particulate matter plots.
