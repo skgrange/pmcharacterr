@@ -70,14 +70,15 @@ import_measurements <- function(con, organic_carbon_multiplier = 1,
 
 #' @rdname import_measurements
 #' @export
-import_field_campaigns <- function(con) {
+import_field_campaigns <- function(con, tz = "UTC") {
   
   databaser::db_get(
     con, 
     "SELECT * 
     FROM field_campaigns
     ORDER BY field_campaign"
-  )
+  ) %>% 
+    dplyr::mutate_at(c("date_start", "date_end"), lubridate::ymd, tz = tz)
   
 }
 

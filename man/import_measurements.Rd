@@ -11,7 +11,7 @@
 \usage{
 import_measurements(con, organic_carbon_multiplier = 1, tz = "UTC")
 
-import_field_campaigns(con)
+import_field_campaigns(con, tz = "UTC")
 
 import_sites(con)
 
