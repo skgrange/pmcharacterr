@@ -2,20 +2,25 @@
 #' 
 #' @author Stuart K. Grange
 #' 
-#' @param as_palette Should the return be of class \code{palette}? 
+#' @param format What type of object should be returned?  
 #' 
-#' @return Named colour palette or tibble. 
+#' @return Named vector, named colour palette, or a tibble. 
 #' 
 #' @examples 
 #' 
-#' colours_pmcharacterr(as_palette = TRUE)
-#' colours_pmcharacterr(as_palette = FALSE)
+#' colours_pmcharacterr()
+#' colours_pmcharacterr(format = "palette")
+#' colours_pmcharacterr(format = "tibble")
 #'
 #' @export 
-colours_pmcharacterr <- function(as_palette = TRUE) {
+colours_pmcharacterr <- function(format = c("character", "palette", "tibble", 
+                                            "data.frame", "df")) {
+  
+  # Check input
+  stopifnot(format %in% c("character", "palette", "tibble", "data.frame", "df"))
   
   # The colours
-  df <- dplyr::tribble(
+  x <- dplyr::tribble(
     ~variable,          ~colour,  
     "elemental_carbon", "#404040",
     "organic_carbon",   "#20b848",
@@ -28,20 +33,16 @@ colours_pmcharacterr <- function(as_palette = TRUE) {
     "missing",          "#cfcfcf"
   )
   
-  if (as_palette) {
-    
-    x <- df %>% 
+  if (format[1] == "character") {
+    x <- tibble::deframe(x)
+  } else if (format[1] == "palette") {
+    x <- x %>% 
       tibble::deframe() %>% 
       "class<-"("palette") 
-    
-    return(x)
-    
-  } else {
-    
-    return(df)
-    
-  }
+  } 
   
+  return(x)
+
 }
 
 

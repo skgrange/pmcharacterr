@@ -4,21 +4,24 @@
 \alias{colours_pmcharacterr}
 \title{Function to generate a custom colour palette for particulate matter plots.}
 \usage{
-colours_pmcharacterr(as_palette = TRUE)
+colours_pmcharacterr(
+  format = c("character", "palette", "tibble", "data.frame", "df")
+)
 }
 \arguments{
-\item{as_palette}{Should the return be of class \code{palette}?}
+\item{format}{What type of object should be returned?}
 }
 \value{
-Named colour palette or tibble.
+Named vector, named colour palette, or a tibble.
 }
 \description{
 Function to generate a custom colour palette for particulate matter plots.
 }
 \examples{
 
-colours_pmcharacterr(as_palette = TRUE)
-colours_pmcharacterr(as_palette = FALSE)
+colours_pmcharacterr()
+colours_pmcharacterr(format = "palette")
+colours_pmcharacterr(format = "tibble")
 
 }
 \author{
