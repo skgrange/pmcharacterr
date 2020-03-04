@@ -20,13 +20,11 @@ import_measurements <- function(con, organic_carbon_multiplier = 1,
     "SELECT m.field_campaign, 
     field_campaigns.field_campaign_name,
     m.data_source, 
-    data_sources.data_source_name,
     m.laboratory_identifier, 
     m.filter,
     m.method_type, 
     m.calculated,
     m.particulate_fraction, 
-    m.date_analysis, 
     m.laboratory_notes, 
     m.date, 
     m.date_end,
@@ -39,8 +37,6 @@ import_measurements <- function(con, organic_carbon_multiplier = 1,
     FROM measurements AS m
     LEFT JOIN sites 
     ON m.site = sites.site
-    LEFT JOIN data_sources 
-    ON m.data_source = data_sources.data_source
     LEFT JOIN field_campaigns 
     ON m.field_campaign = field_campaigns.field_campaign
     ORDER BY m.site,
@@ -50,8 +46,7 @@ import_measurements <- function(con, organic_carbon_multiplier = 1,
     particulate_fraction"
   ) %>% 
     mutate(date = threadr::parse_unix_time(date, tz = tz),
-           date_end = threadr::parse_unix_time(date_end, tz = tz),
-           date_analysis = threadr::parse_unix_time(date_analysis, tz = tz))
+           date_end = threadr::parse_unix_time(date_end, tz = tz))
   
   # Use a multiplier
   if (organic_carbon_multiplier != 1) {

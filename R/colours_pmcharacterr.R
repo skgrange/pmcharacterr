@@ -21,24 +21,33 @@ colours_pmcharacterr <- function(format = c("character", "palette", "tibble",
   
   # The colours
   x <- dplyr::tribble(
-    ~variable,          ~colour,  
-    "elemental_carbon", "#404040",
-    "organic_carbon",   "#20b848",
-    "nitrate",          "#2471ee",
-    "ammonium",         "#eea124",
-    "sulfate",          "#e6252c",
-    "chloride",         "#b82090",
-    "mineral_dust",     "#b84820",
-    "trace_elements",   "#2090b8",
-    "missing",          "#cfcfcf"
+    ~variable,          ~colour,   ~variable_name,     ~variable_expression, ~text_colour,
+    "elemental_carbon", "#404040", "Elemental carbon", "EC",                 "white",     
+    "organic_carbon",   "#20b848", "Organic matter",   "OM",                 "white",     
+    "nitrate",          "#2471ee", "Nitrate",          "NO[3] * '-'",        "white",     
+    "ammonium",         "#eea124", "Ammonium",         "NH[4] * '+'",        "white",     
+    "sulfate",          "#e6252c", "Sulfate",          "SO[4] ^{2 * '-'}",   "white",     
+    "chloride",         "#b82090", "Chloride",         "Cl ^ {'-'}",         "white",     
+    "mineral_dust",     "#b84820", "Mineral dust",     "Mineral~dust",       "white",     
+    "trace_elements",   "#2090b8", "Trace elements",   "Trace~elements",     "black",     
+    "missing",          "#cfcfcf", "Missing mass",     "Unknown",            "black"
   )
   
   if (format[1] == "character") {
-    x <- tibble::deframe(x)
-  } else if (format[1] == "palette") {
+    
     x <- x %>% 
+      select(variable_name,
+             colour) %>% 
+      tibble::deframe()
+    
+  } else if (format[1] == "palette") {
+    
+    x <- x %>% 
+      select(variable_name,
+             colour) %>% 
       tibble::deframe() %>% 
       "class<-"("palette") 
+    
   } 
   
   return(x)
