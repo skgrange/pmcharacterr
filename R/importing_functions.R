@@ -5,7 +5,10 @@
 #' @param organic_carbon_multiplier Multiplier for organic carbon measurements. 
 #' Often, a value of \code{1.6} or \code{1.8} is used.
 #' 
-#' @param tz Time zone to format dates to. 
+#' @param convert_units Should units be normalised to \code{ug.m-3}. This 
+#' requires other units to be set correctly in the \code{measurements} table. 
+#' 
+#' @param tz Time zone to format dates to.
 #' 
 #' @return Tibble.
 #' 
@@ -13,7 +16,7 @@
 #' 
 #' @export
 import_measurements <- function(con, organic_carbon_multiplier = 1, 
-                                tz = "UTC") {
+                                convert_units = FALSE, tz = "UTC") {
   
   df <- databaser::db_get(
     con, 
@@ -56,6 +59,14 @@ import_measurements <- function(con, organic_carbon_multiplier = 1,
           variable == "organic_carbon", value * !!organic_carbon_multiplier, value
         )
       )
+  }
+  
+  # Convert units
+  if (convert_units) {
+    df <- df %>% 
+      mutate(unit_converted = if_else(unit == "ng.m-3" & !is.na(unit), TRUE, FALSE),
+             value = if_else(unit_converted, value / 1000, value),
+             unit = if_else(unit_converted, "ug.m-3", unit))
   }
   
   return(df)

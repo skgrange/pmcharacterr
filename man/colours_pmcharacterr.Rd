@@ -5,14 +5,18 @@
 \title{Function to generate a custom colour palette for particulate matter plots.}
 \usage{
 colours_pmcharacterr(
-  format = c("character", "palette", "tibble", "data.frame", "df")
+  format = c("character", "palette", "tibble", "data.frame", "df"),
+  names = TRUE
 )
 }
 \arguments{
 \item{format}{What type of object should be returned?}
+
+\item{names}{When \code{format} is \code{character}, should the character 
+vector be named?}
 }
 \value{
-Named vector, named colour palette, or a tibble.
+Named vector, vector, named colour palette, or a tibble.
 }
 \description{
 Function to generate a custom colour palette for particulate matter plots.

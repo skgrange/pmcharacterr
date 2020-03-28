@@ -9,7 +9,12 @@
 \alias{import_laboratories}
 \title{Functions to import data from a \strong{pmcharacterr} database.}
 \usage{
-import_measurements(con, organic_carbon_multiplier = 1, tz = "UTC")
+import_measurements(
+  con,
+  organic_carbon_multiplier = 1,
+  convert_units = FALSE,
+  tz = "UTC"
+)
 
 import_field_campaigns(con, tz = "UTC")
 
@@ -26,6 +31,9 @@ import_laboratories(con)
 
 \item{organic_carbon_multiplier}{Multiplier for organic carbon measurements. 
 Often, a value of \code{1.6} or \code{1.8} is used.}
+
+\item{convert_units}{Should units be normalised to \code{ug.m-3}. This 
+requires other units to be set correctly in the \code{measurements} table.}
 
 \item{tz}{Time zone to format dates to.}
 }

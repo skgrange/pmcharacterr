@@ -4,7 +4,10 @@
 #' 
 #' @param format What type of object should be returned?  
 #' 
-#' @return Named vector, named colour palette, or a tibble. 
+#' @param names When \code{format} is \code{character}, should the character 
+#' vector be named? 
+#' 
+#' @return Named vector, vector, named colour palette, or a tibble. 
 #' 
 #' @examples 
 #' 
@@ -14,7 +17,7 @@
 #'
 #' @export 
 colours_pmcharacterr <- function(format = c("character", "palette", "tibble", 
-                                            "data.frame", "df")) {
+                                            "data.frame", "df"), names = TRUE) {
   
   # Check input
   stopifnot(format %in% c("character", "palette", "tibble", "data.frame", "df"))
@@ -39,6 +42,9 @@ colours_pmcharacterr <- function(format = c("character", "palette", "tibble",
       select(variable_name,
              colour) %>% 
       tibble::deframe()
+    
+    # Drop names
+    if (!names) x <- unname(x)
     
   } else if (format[1] == "palette") {
     
