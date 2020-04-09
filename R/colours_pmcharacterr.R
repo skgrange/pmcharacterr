@@ -26,7 +26,7 @@ colours_pmcharacterr <- function(format = c("character", "palette", "tibble",
   x <- dplyr::tribble(
     ~variable,          ~colour,   ~variable_name,     ~variable_expression, ~text_colour,
     "elemental_carbon", "#404040", "Elemental carbon", "EC",                 "white",     
-    "organic_carbon",   "#20b848", "Organic matter",   "OM",                 "white",     
+    "organic_matter",   "#20b848", "Organic matter",   "OM",                 "white",     
     "nitrate",          "#2471ee", "Nitrate",          "NO[3] * '-'",        "white",     
     "ammonium",         "#eea124", "Ammonium",         "NH[4] * '+'",        "white",     
     "sulfate",          "#e6252c", "Sulfate",          "SO[4] ^{2 * '-'}",   "white",     

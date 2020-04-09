@@ -15,8 +15,8 @@
 #' data_example <- tibble::tribble(
 #'  ~variable,        ~value,
 #'  "mass",           39.7,  
-#'  "ec",             6.1,   
-#'  "om",             9.2,   
+#'  "elemental_carbon", 6.1,   
+#'  "organic_matter", 9.2,   
 #'  "nitrate",        3.3,   
 #'  "ammonium",       1.4,   
 #'  "sulfate",        3.3,   

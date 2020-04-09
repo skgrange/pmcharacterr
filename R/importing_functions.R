@@ -2,8 +2,10 @@
 #' 
 #' @param con Database connection to a \strong{pmcharacterr} database. 
 #' 
-#' @param organic_carbon_multiplier Multiplier for organic carbon measurements. 
-#' Often, a value of \code{1.6} or \code{1.8} is used.
+#' @param organic_carbon_multiplier Multiplier for \code{organic_carbon} 
+#' measurements to be transformed to organic matter. Usually, a value of 
+#' \code{1.6} or \code{1.8} is used. The variable name will also be switched to 
+#' \code{organic_matter}. 
 #' 
 #' @param convert_units Should units be normalised to \code{ug.m-3}. This 
 #' requires other units to be set correctly in the \code{measurements} table. 
@@ -55,10 +57,11 @@ import_measurements <- function(con, organic_carbon_multiplier = 1,
   if (organic_carbon_multiplier != 1) {
     df <- df %>% 
       mutate(
-        value = if_else(
-          variable == "organic_carbon", value * !!organic_carbon_multiplier, value
-        )
-      )
+        organic_carbon = if_else(variable == "organic_carbon" & !is.na(variable), TRUE, FALSE),
+        variable = if_else(organic_carbon, "organic_matter", variable),
+        value = if_else(organic_carbon, value * !!organic_carbon_multiplier, value)
+      ) %>% 
+      select(-organic_carbon)
   }
   
   # Convert units

@@ -29,8 +29,10 @@ import_laboratories(con)
 \arguments{
 \item{con}{Database connection to a \strong{pmcharacterr} database.}
 
-\item{organic_carbon_multiplier}{Multiplier for organic carbon measurements. 
-Often, a value of \code{1.6} or \code{1.8} is used.}
+\item{organic_carbon_multiplier}{Multiplier for \code{organic_carbon} 
+measurements to be transformed to organic matter. Usually, a value of 
+\code{1.6} or \code{1.8} is used. The variable name will also be switched to 
+\code{organic_matter}.}
 
 \item{convert_units}{Should units be normalised to \code{ug.m-3}. This 
 requires other units to be set correctly in the \code{measurements} table.}
