@@ -41,7 +41,18 @@ calculate_contributions <- function(df) {
   
   stopifnot(length(value_mass) == 1)
   
-  # Calculate contribtions for each observation
+  # Sum other values
+  value_sum_other <- df %>% 
+    filter(variable != "mass") %>% 
+    summarise(value = sum(value, na.rm = TRUE)) %>% 
+    pull()
+  
+  # Raise warning
+  if (value_sum_other > value_mass) {
+    warning("Components make up more mass than the mass value...", call. = FALSE)
+  }
+  
+  # Calculate contributions for each observation
   df <- mutate(df, contribution = value / !!value_mass)
   
   # Check for negative contributions and raise warning
@@ -81,9 +92,7 @@ calculate_contributions <- function(df) {
 #' 
 #' @export
 str_contribution_label <- function(x, digits = 1) {
-  
   x %>% 
     round(digits = digits) %>% 
     stringr::str_c(" %")
-  
 }
