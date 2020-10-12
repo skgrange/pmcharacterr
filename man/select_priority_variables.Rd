@@ -3,7 +3,7 @@
 \name{select_priority_variables}
 \alias{select_priority_variables}
 \title{Function to select a collection of priority variables from a 
-\code{`measurements`} \strong{pmcharacter} table.}
+\code{`measurements`} \strong{pmcharacterr} table.}
 \usage{
 select_priority_variables(df)
 }
@@ -15,7 +15,7 @@ Tibble.
 }
 \description{
 Function to select a collection of priority variables from a 
-\code{`measurements`} \strong{pmcharacter} table.
+\code{`measurements`} \strong{pmcharacterr} table.
 }
 \author{
 Stuart K. Grange

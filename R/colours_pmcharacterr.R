@@ -28,11 +28,11 @@ colours_pmcharacterr <- function(format = c("character", "palette", "tibble",
     "elemental_carbon", "#404040", "Elemental carbon", "EC",                 "white",     
     "organic_matter",   "#20b848", "Organic matter",   "OM",                 "white",     
     "nitrate",          "#2471ee", "Nitrate",          "NO[3] * '-'",        "white",     
-    "ammonium",         "#eea124", "Ammonium",         "NH[4] * '+'",        "white",     
+    "ammonium",         "#f8d568", "Ammonium",         "NH[4] * '+'",        "black",     
     "sulfate",          "#e6252c", "Sulfate",          "SO[4] ^{2 * '-'}",   "white",     
     "chloride",         "#b82090", "Chloride",         "Cl ^ {'-'}",         "white",     
-    "mineral_dust",     "#b84820", "Mineral dust",     "Mineral~dust",       "white",     
-    "trace_elements",   "#2090b8", "Trace elements",   "Trace~elements",     "black",     
+    "mineral_dust",     "#dd7e28", "Mineral dust",     "Mineral~dust",       "black",     
+    "trace_elements",   "#7dcce8", "Trace elements",   "Trace~elements",     "black",     
     "missing",          "#cfcfcf", "Missing mass",     "Unknown",            "black"
   )
   

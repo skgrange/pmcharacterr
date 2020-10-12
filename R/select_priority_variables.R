@@ -1,5 +1,5 @@
 #' Function to select a collection of priority variables from a 
-#' \code{`measurements`} \strong{pmcharacter} table. 
+#' \code{`measurements`} \strong{pmcharacterr} table. 
 #' 
 #' @author Stuart K. Grange
 #' 
