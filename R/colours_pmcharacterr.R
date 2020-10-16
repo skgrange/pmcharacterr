@@ -32,7 +32,8 @@ colours_pmcharacterr <- function(format = c("character", "palette", "tibble",
     "sulfate",          "#e6252c", "Sulfate",          "SO[4] ^{2 * '-'}",   "white",     
     "chloride",         "#b82090", "Chloride",         "Cl ^ {'-'}",         "white",     
     "mineral_dust",     "#dd7e28", "Mineral dust",     "Mineral~dust",       "black",     
-    "trace_elements",   "#7dcce8", "Trace elements",   "Trace~elements",     "black",     
+    "trace_elements",   "#7dcce8", "Trace elements",   "Trace~elements",     "black",
+    "silicon",          "#b82090", "Silicon",          "Si",                 "black",
     "missing",          "#cfcfcf", "Missing mass",     "Unknown",            "black"
   )
   
