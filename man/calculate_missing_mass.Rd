@@ -4,12 +4,15 @@
 \alias{calculate_missing_mass}
 \title{Function to calculate particulate matter missing mass.}
 \usage{
-calculate_missing_mass(df, digits = 6)
+calculate_missing_mass(df, digits = 6, add_method_type = TRUE)
 }
 \arguments{
 \item{df}{Input data frame.}
 
 \item{digits}{Number of digits for logic test.}
+
+\item{add_method_type}{Should a \code{method_type} variable be added to the 
+return?}
 }
 \value{
 Tibble.
@@ -35,6 +38,7 @@ data_example <- tibble::tribble(
  
 # Determine missing mass
 calculate_missing_mass(data_example)
+calculate_missing_mass(data_example, add_method_type = FALSE)
 
 }
 \seealso{

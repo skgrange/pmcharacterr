@@ -7,6 +7,9 @@
 #' 
 #' @param digits Number of digits for logic test.
 #' 
+#' @param add_method_type Should a \code{method_type} variable be added to the 
+#' return? 
+#' 
 #' @author Stuart K. Grange
 #' 
 #' @return Tibble. 
@@ -30,9 +33,10 @@
 #'  
 #' # Determine missing mass
 #' calculate_missing_mass(data_example)
+#' calculate_missing_mass(data_example, add_method_type = FALSE)
 #' 
 #' @export
-calculate_missing_mass <- function(df, digits = 6) {
+calculate_missing_mass <- function(df, digits = 6, add_method_type = TRUE) {
   
   # Check input
   stopifnot(all(c("variable", "value") %in% names(df)))
@@ -58,7 +62,7 @@ calculate_missing_mass <- function(df, digits = 6) {
     pull(value) %>% 
     sum(na.rm = TRUE)
   
-  # Calculate mising mass
+  # Calculate missing mass
   if (signif(value_mass, digits = digits) == signif(known_mass, digits = digits)) {
     missing_mass <- 0
   } else {
@@ -74,6 +78,11 @@ calculate_missing_mass <- function(df, digits = 6) {
   
   # Bind to input which has been selected
   df <- bind_rows(df, df_missing)
+  
+  # Drop the extra variable
+  if (!add_method_type) {
+    df <- select(df, -method_type)
+  }
   
   return(df)
   
