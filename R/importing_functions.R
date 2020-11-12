@@ -147,3 +147,20 @@ import_laboratories <- function(con) {
   )
   
 }
+
+
+#' @rdname import_measurements
+#' @export
+import_complete_dates <- function(con, tz = "UTC") {
+  
+  databaser::db_get(
+    con, 
+    "SELECT * 
+    FROM complete_observation_dates
+    ORDER BY site,
+    particulate_fraction,
+    date"
+  ) %>% 
+    mutate(date = threadr::parse_unix_time(date, tz = tz))
+  
+}

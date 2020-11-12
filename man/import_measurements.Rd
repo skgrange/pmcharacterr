@@ -7,6 +7,7 @@
 \alias{import_mass_contributions}
 \alias{import_data_sources}
 \alias{import_laboratories}
+\alias{import_complete_dates}
 \title{Functions to import data from a \strong{pmcharacterr} database.}
 \usage{
 import_measurements(
@@ -25,6 +26,8 @@ import_mass_contributions(con)
 import_data_sources(con)
 
 import_laboratories(con)
+
+import_complete_dates(con, tz = "UTC")
 }
 \arguments{
 \item{con}{Database connection to a \strong{pmcharacterr} database.}
