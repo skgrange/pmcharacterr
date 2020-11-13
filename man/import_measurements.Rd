@@ -14,6 +14,8 @@ import_measurements(
   con,
   organic_carbon_multiplier = 1,
   convert_units = FALSE,
+  value_type = NA,
+  use_complete_dates = FALSE,
   tz = "UTC"
 )
 
@@ -39,6 +41,11 @@ measurements to be transformed to organic matter. Usually, a value of
 
 \item{convert_units}{Should units be normalised to \code{ug.m-3}. This 
 requires other units to be set correctly in the \code{measurements} table.}
+
+\item{value_type}{A vector to filter the `value_type` variable to.}
+
+\item{use_complete_dates}{If a `complete_observation_dates` table is present, 
+should the observations be filtered to these dates?}
 
 \item{tz}{Time zone to format dates to.}
 }

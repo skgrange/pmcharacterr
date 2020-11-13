@@ -10,6 +10,11 @@
 #' @param convert_units Should units be normalised to \code{ug.m-3}. This 
 #' requires other units to be set correctly in the \code{measurements} table. 
 #' 
+#' @param value_type A vector to filter the `value_type` variable to. 
+#' 
+#' @param use_complete_dates If a `complete_observation_dates` table is present, 
+#' should the observations be filtered to these dates?
+#' 
 #' @param tz Time zone to format dates to.
 #' 
 #' @return Tibble.
@@ -18,7 +23,13 @@
 #' 
 #' @export
 import_measurements <- function(con, organic_carbon_multiplier = 1, 
-                                convert_units = FALSE, tz = "UTC") {
+                                convert_units = FALSE, value_type = NA, 
+                                use_complete_dates = FALSE, tz = "UTC") {
+  
+  # Check for table existence
+  if (!databaser::db_table_exists(con, "measurements")) {
+    stop("`measurements` does not exist.", call. = FALSE)
+  }
   
   df <- databaser::db_get(
     con, 
@@ -72,6 +83,23 @@ import_measurements <- function(con, organic_carbon_multiplier = 1,
              unit = if_else(unit_converted, "ug.m-3", unit))
   }
   
+  # Filter observations to `complete_observation_dates` table
+  if (use_complete_dates) {
+    
+    # Get filtering table
+    df_complete <- import_complete_dates(con, tz = tz) %>% 
+      select(-site_name)
+    
+    # Filter observations
+    df <- inner_join(df, df_complete, by = c("particulate_fraction", "date", "site"))
+    
+  }
+  
+  # Filter to particular value types
+  if (!is.na(value_type[1])) {
+    df <- filter(df, value_type %in% !!value_type)
+  }
+  
   return(df)
   
 }
@@ -81,13 +109,18 @@ import_measurements <- function(con, organic_carbon_multiplier = 1,
 #' @export
 import_field_campaigns <- function(con, tz = "UTC") {
   
+  # Check for table existence
+  if (!databaser::db_table_exists(con, "field_campaign")) {
+    stop("`field_campaign` does not exist.", call. = FALSE)
+  }
+  
   databaser::db_get(
     con, 
     "SELECT * 
     FROM field_campaigns
     ORDER BY field_campaign"
   ) %>% 
-    dplyr::mutate_at(c("date_start", "date_end"), lubridate::ymd, tz = tz)
+    mutate(across(c("date_start", "date_end")), lubridate::ymd, tz = tz)
   
 }
 
@@ -95,6 +128,11 @@ import_field_campaigns <- function(con, tz = "UTC") {
 #' @rdname import_measurements
 #' @export
 import_sites <- function(con) {
+  
+  # Check for table existence
+  if (!databaser::db_table_exists(con, "sites")) {
+    stop("`sites` does not exist.", call. = FALSE)
+  }
   
   databaser::db_get(
     con, 
@@ -109,6 +147,11 @@ import_sites <- function(con) {
 #' @rdname import_measurements
 #' @export
 import_mass_contributions <- function(con) {
+  
+  # Check for table existence
+  if (!databaser::db_table_exists(con, "mass_contributions")) {
+    stop("`mass_contributions` does not exist.", call. = FALSE)
+  }
   
   databaser::db_get(
     con, 
@@ -125,6 +168,11 @@ import_mass_contributions <- function(con) {
 #' @export
 import_data_sources <- function(con) {
   
+  # Check for table existence
+  if (!databaser::db_table_exists(con, "data_source")) {
+    stop("`data_source` does not exist.", call. = FALSE)
+  }
+  
   databaser::db_get(
     con, 
     "SELECT * 
@@ -139,6 +187,11 @@ import_data_sources <- function(con) {
 #' @export
 import_laboratories <- function(con) {
   
+  # Check for table existence
+  if (!databaser::db_table_exists(con, "laboratories")) {
+    stop("`laboratories` does not exist.", call. = FALSE)
+  }
+  
   databaser::db_get(
     con, 
     "SELECT * 
@@ -152,6 +205,11 @@ import_laboratories <- function(con) {
 #' @rdname import_measurements
 #' @export
 import_complete_dates <- function(con, tz = "UTC") {
+  
+  # Check for table existence
+  if (!databaser::db_table_exists(con, "complete_observation_dates")) {
+    stop("`complete_observation_dates` does not exist.", call. = FALSE)
+  }
   
   databaser::db_get(
     con, 
