@@ -110,8 +110,8 @@ import_measurements <- function(con, organic_carbon_multiplier = 1,
 import_field_campaigns <- function(con, tz = "UTC") {
   
   # Check for table existence
-  if (!databaser::db_table_exists(con, "field_campaign")) {
-    stop("`field_campaign` does not exist.", call. = FALSE)
+  if (!databaser::db_table_exists(con, "field_campaigns")) {
+    stop("`field_campaigns` does not exist.", call. = FALSE)
   }
   
   databaser::db_get(
@@ -120,7 +120,7 @@ import_field_campaigns <- function(con, tz = "UTC") {
     FROM field_campaigns
     ORDER BY field_campaign"
   ) %>% 
-    mutate(across(c("date_start", "date_end")), lubridate::ymd, tz = tz)
+    mutate(across(c("date_start", "date_end"), lubridate::ymd, tz = tz))
   
 }
 
