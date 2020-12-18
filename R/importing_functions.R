@@ -169,8 +169,8 @@ import_mass_contributions <- function(con) {
 import_data_sources <- function(con) {
   
   # Check for table existence
-  if (!databaser::db_table_exists(con, "data_source")) {
-    stop("`data_source` does not exist.", call. = FALSE)
+  if (!databaser::db_table_exists(con, "data_sources")) {
+    stop("`data_sources` does not exist.", call. = FALSE)
   }
   
   databaser::db_get(
