@@ -48,6 +48,7 @@ import_measurements <- function(con, organic_carbon_multiplier = 1,
     sites.site_name,  
     m.variable, 
     m.value_type, 
+    m.analytical_note_id,
     m.unit, 
     m.value
     FROM measurements AS m
@@ -68,7 +69,9 @@ import_measurements <- function(con, organic_carbon_multiplier = 1,
   if (organic_carbon_multiplier != 1) {
     df <- df %>% 
       mutate(
-        organic_carbon = if_else(variable == "organic_carbon" & !is.na(variable), TRUE, FALSE),
+        organic_carbon = if_else(
+          variable == "organic_carbon" & !is.na(variable), TRUE, FALSE
+        ),
         variable = if_else(organic_carbon, "organic_matter", variable),
         value = if_else(organic_carbon, value * !!organic_carbon_multiplier, value)
       ) %>% 
