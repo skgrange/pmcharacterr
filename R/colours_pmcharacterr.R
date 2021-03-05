@@ -34,7 +34,8 @@ colours_pmcharacterr <- function(format = c("character", "palette", "tibble",
     "mineral_dust",     "#dd7e28", "Mineral dust",     "Mineral~dust",       "black",     
     "trace_elements",   "#7dcce8", "Trace elements",   "Trace~elements",     "black",
     "silicon",          "#b82090", "Silicon",          "Si",                 "black",
-    "missing",          "#cfcfcf", "Missing mass",     "Unknown",            "black"
+    "missing",          "#cfcfcf", "Missing mass",     "Unknown",            "black",
+    "unidentified",     "#cfcfcf", "Unidentified",     "Unidentified",       "black"
   )
   
   if (format[1] == "character") {
