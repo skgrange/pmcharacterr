@@ -8,6 +8,7 @@
 \alias{import_data_sources}
 \alias{import_laboratories}
 \alias{import_complete_dates}
+\alias{import_error_summaries}
 \title{Functions to import data from a \strong{pmcharacterr} database.}
 \usage{
 import_measurements(
@@ -30,6 +31,8 @@ import_data_sources(con)
 import_laboratories(con)
 
 import_complete_dates(con, tz = "UTC")
+
+import_error_summaries(con)
 }
 \arguments{
 \item{con}{Database connection to a \strong{pmcharacterr} database.}

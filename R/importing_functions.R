@@ -225,3 +225,19 @@ import_complete_dates <- function(con, tz = "UTC") {
     mutate(date = threadr::parse_unix_time(date, tz = tz))
   
 }
+
+
+#' @rdname import_measurements
+#' @export
+import_error_summaries <- function(con) {
+  
+  databaser::db_get(
+    con,
+    "SELECT * 
+    FROM error_summaries
+    ORDER BY field_campaign,
+    statistic,
+    variable"
+  )
+  
+}
