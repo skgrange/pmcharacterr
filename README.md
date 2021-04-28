@@ -4,7 +4,7 @@
 
 ## Introduction
 
-**pmcharacterr** is an R package which interfaces with a database with a specific data model which stores detailed atmospheric particulate matter (PM) observations. The data model has been implemented with a [SQLite](https://www.sqlite.org/index.html) database for a specific research project which involved three filter-based sampling campaigns. It allows for rapid, efficient, and easy access to PM observations and their metadata. Care has been taken to handle the various pieces of data which are required for the application of source apportionment models. 
+**pmcharacterr** is an R package which interfaces with a database with a specific data model which stores detailed atmospheric particulate matter (PM) observations. The data model has been implemented with a [SQLite](https://www.sqlite.org/index.html) database for a specific research project which involved three filter-based sampling campaigns. It allows for rapid, efficient, and easy access to PM observations and their metadata. Care has been taken to handle the various pieces of data which are required for the application of source apportionment models.
 
 ## Installation
 
